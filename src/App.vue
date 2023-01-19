@@ -4,7 +4,7 @@ import {reactive, Ref, ref} from "vue";
 
 let serverInfo: Ref = ref('');  // 使用ref 之后赋值需要使用 .value 的形式
 // reactive 推荐使用方法, 直接在 reactive 上进行改变会破坏响应式，可以修改 reactive 内部的变量来确保响应式
-let response = reactive({
+let response:object = reactive({
   'arr': [
     {
       data: '',
@@ -21,6 +21,9 @@ async function getServerData() {
   // serverInfo = res.data;
   // ref 正确的写法
   // serverInfo.value = res.data;
+
+  // reactive 错误的写法
+  // response = res;  // 此时我们对象就丢失了响应式
 
   // 方法一： es6 对象结构方式    或者   数组解构方式
   // response = {...res}
