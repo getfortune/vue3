@@ -20,7 +20,7 @@ export default ({ mode }) => {
       // 也将更改基于模式的基础
       base: isDevelopment ? "/" : "/app/",
       plugins: [vue({
-          reactivityTransform:true, // 开启了不需要使用 .value
+          // reactivityTransform:true, // 开启了不需要使用 .value
       })],
   });
 };
