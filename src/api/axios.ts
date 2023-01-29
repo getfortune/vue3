@@ -18,6 +18,9 @@ axios.interceptors.request.use(
       'Content-Type':'application/json;charset=UTF-8',        // 传参方式json
       // 'token':'80c483d59ca86ad0393cf8a98416e2a1'              // 这里自定义配置，这里传的是token
     };
+    if (import.meta.env.VITE_VUE_APP_DEBUG === "true") {
+      config.url += "?XDEBUG_SESSION_START=1"
+    }
     return config;
   },
   error => {

@@ -4,10 +4,6 @@ import AutoImport from "unplugin-auto-import/vite" // 自动导入一些常用�
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import ViteImages from 'vite-plugin-vue-images'
 
-// https://vitejs.dev/config/
-// export default defineConfig({
-//   plugins: [vue()],
-// })
 export default ({ mode }) => {
   // 检查是否开发
   const isDevelopment = mode === "development";
