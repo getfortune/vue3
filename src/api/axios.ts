@@ -1,6 +1,7 @@
 //  二次封装axios请求配置拦截器
 import axios from 'axios'
-import { showMessage } from "./status";   // 引入状态码文件
+import { showMessage } from "./status";
+import {useTokenStore} from "../stores/store";   // 引入状态码文件
 
 // 设置接口超时时间
 axios.defaults.timeout = 60000;
@@ -12,14 +13,17 @@ axios.defaults.baseURL = import.meta.env.VITE_API_DOMAIN;
 //http request 拦截器
 axios.interceptors.request.use(
   config => {
-  // 配置请求头
+    // 获取store
+    const store = useTokenStore();
+    // 配置请求头
     config.data = {
-      //'Content-Type':'application/x-www-form-urlencoded',   // 传参方式表单
       'Content-Type':'application/json;charset=UTF-8',        // 传参方式json
-      // 'token':'80c483d59ca86ad0393cf8a98416e2a1'              // 这里自定义配置，这里传的是token
     };
     if (import.meta.env.VITE_VUE_APP_DEBUG === "true") {
       config.url += "?XDEBUG_SESSION_START=1"
+    }
+    if (store.getToken() != ''){
+      config.headers['Authorization'] = store.token;
     }
     return config;
   },

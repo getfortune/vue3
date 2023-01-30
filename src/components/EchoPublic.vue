@@ -6,8 +6,11 @@
 <script setup lang="ts" name="EchoPublic">
 import useCurrentInstance from "../utils/UseCurrentInstance";
 import api from "../api/api";
+import {useTokenStore} from "../stores/store";
 
 const {proxy} = useCurrentInstance();
+const store = useTokenStore();
+// 解构store 响应式需要使用
 proxy.$Echo.channel('Countryside')
     .listen('Free',(e:any)=>{
       console.log(e,123)
@@ -21,10 +24,10 @@ let submit = async () =>{
   // let res = await api.event();
   let res = await api.private();
 }
-
+type Token = {token:string}
 let login = async ()=>{
-  let d3 = await api.d3();
-  proxy.token = d3;
+  let d3 = <Token>await api.d3();
+  store.saveToken(d3.token);
 }
 </script>
 
