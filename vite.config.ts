@@ -10,7 +10,7 @@ export default ({ mode }) => {
 
   return defineConfig({
       server: {
-          port: 3000,
+          port: 3001,
       },
       build: {
           // 生成的文件将添加到此处
