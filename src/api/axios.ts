@@ -23,7 +23,7 @@ axios.interceptors.request.use(
       config.url += "?XDEBUG_SESSION_START=1"
     }
     if (store.getToken() != ''){
-      config.headers['Authorization'] = store.token;
+      config.headers['Authorization'] = "Bearer " + store.token;
     }
     return config;
   },

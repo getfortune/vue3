@@ -10,7 +10,7 @@ import {useTokenStore} from "../stores/store";
 
 const {proxy} = useCurrentInstance();
 const store = useTokenStore();
-// 解构store 响应式需要使用
+// 解构store 响应式需要使用 storeToRefs
 proxy.$Echo.channel('Countryside')
     .listen('Free',(e:any)=>{
       console.log(e,123)
